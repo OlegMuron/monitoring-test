@@ -1,0 +1,107 @@
+version: '3'
+services:
+    app:
+        build: .
+        image: monitoring-test/app:latest
+        extra_hosts:
+            - 'host.docker.internal:host-gateway'
+        ports:
+            - "127.0.0.1:9001:9000/tcp"
+            - "127.0.0.1:81:80/tcp"
+        env_file: docker-compose.env
+        volumes:
+            - '.:/app'
+        networks:
+            - monitoring-test
+
+    mongo:
+        image: mongo
+        restart: always
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: example
+        volumes:
+            - 'mongo:/data/db'
+        ports:
+            - "27017:27017"
+        networks:
+            - monitoring-test
+
+    elasticsearch:
+        image: elasticsearch:7.9.1
+        environment:
+            - cluster.name=monitoring-test-cluster
+            - node.name=monitoring-node
+            - bootstrap.memory_lock=true
+            - xpack.security.enabled=false
+            - xpack.security.transport.ssl.enabled=false
+            - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+            - cluster.initial_master_nodes=monitoring-node
+        ulimits:
+            memlock:
+                soft: -1
+                hard: -1
+            nofile:
+                soft: 65536
+                hard: 65536
+        ports:
+            - "9200:9200"
+            - "9300:9300"
+        expose:
+            - "9200"
+        networks:
+            - monitoring-test
+
+    telegraf:
+        image: telegraf:1.18-alpine
+        volumes:
+            - ./telegraf/etc/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+        depends_on:
+            - influxdb
+        links:
+            - influxdb
+            - mongo
+            - app
+            - elasticsearch
+        ports:
+            - '127.0.0.1:8125:8125/udp'
+        networks:
+            - monitoring-test
+
+    influxdb:
+        image: influxdb:1.8-alpine
+        env_file: docker-compose.env
+        ports:
+            - '127.0.0.1:8086:8086'
+        volumes:
+            - ./:/imports
+            - influxdb_data:/var/lib/influxdb
+        networks:
+            - monitoring-test
+
+    grafana:
+        image: grafana/grafana:8.0.2
+        depends_on:
+            - influxdb
+        env_file: docker-compose.env
+        links:
+            - influxdb
+        ports:
+            - '127.0.0.1:3000:3000'
+        volumes:
+            - grafana_data:/var/lib/grafana
+            - ./grafana/provisioning/:/etc/grafana/provisioning/
+            - ./grafana/dashboards/:/var/lib/grafana/dashboards/
+        networks:
+            - monitoring-test
+
+networks:
+    monitoring-test:
+        external:
+            name: monitoring-test
+
+volumes:
+    mongo:
+        driver: local
+    grafana_data: { }
+    influxdb_data: { }
