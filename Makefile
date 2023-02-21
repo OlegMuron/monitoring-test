@@ -25,8 +25,9 @@ else
 VERSION ?= 0.0.1
 endif
 
-%.env:
-	cp $@.example $@
+.PHONY: .env
+.env: ## Make .env file
+	 cp $@.example $@
 
 # Public targets
 .PHONY: .title
@@ -88,6 +89,14 @@ stats: ## Show containers info (CPU, Mem, PIDs, Status, Ports etc.)
 		--no-stream \
 		--format \
 			"table {{.Name}}\t{{.CPUPerc}}\t{{.MemPerc}}\t{{.MemUsage}}\t{{.NetIO}}\t{{.BlockIO}}\t{{.PIDs}}"
+
+.PHONY: load-without-request-to-dbs
+load-stub: ## Make 1000 req per 5 thread to the stub page
+	 ab -n 1000 -c 5 http://127.0.0.1:81/
+
+.PHONY: load-test
+load-test: ## Make 1000 req per 5 thread to the test page with queries to MongoDB and Elastic
+	 ab -n 1000 -c 5 http://127.0.0.1:81/test
 
 .PHONY: help
 help: .title ## Show this help and exit (default target)

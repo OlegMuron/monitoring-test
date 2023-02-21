@@ -30,13 +30,12 @@ services:
     elasticsearch:
         image: elasticsearch:7.9.1
         environment:
-            - cluster.name=monitoring-test-cluster
             - node.name=monitoring-node
             - bootstrap.memory_lock=true
+            - discovery.type=single-node
             - xpack.security.enabled=false
             - xpack.security.transport.ssl.enabled=false
             - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-            - cluster.initial_master_nodes=monitoring-node
         ulimits:
             memlock:
                 soft: -1
@@ -53,16 +52,19 @@ services:
             - monitoring-test
 
     telegraf:
-        image: telegraf:1.18-alpine
+        image: telegraf:1.25.2-alpine
         volumes:
-            - ./telegraf/etc/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+            - ./docker/monitoring/telegraf/etc/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+            - /var/run/docker.sock:/var/run/docker.sock
         depends_on:
             - influxdb
+        user: telegraf:telegraf
         links:
             - influxdb
             - mongo
             - app
             - elasticsearch
+            - socket
         ports:
             - '127.0.0.1:8125:8125/udp'
         networks:
@@ -84,14 +86,32 @@ services:
         depends_on:
             - influxdb
         env_file: docker-compose.env
+        environment:
+            GF_INSTALL_PLUGINS: grafana-piechart-panel
+            GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS: grafana-piechart-panel
         links:
             - influxdb
         ports:
             - '127.0.0.1:3000:3000'
         volumes:
             - grafana_data:/var/lib/grafana
-            - ./grafana/provisioning/:/etc/grafana/provisioning/
-            - ./grafana/dashboards/:/var/lib/grafana/dashboards/
+            - ./docker/monitoring/grafana/provisioning/:/etc/grafana/provisioning/
+            - ./docker/monitoring/grafana/dashboards/:/var/lib/grafana/dashboards/
+        networks:
+            - monitoring-test
+
+    socket:
+        image: tecnativa/docker-socket-proxy
+        restart: always
+        privileged: true
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+        ports:
+            - '2375:2375'
+        environment:
+            - LOG_LEVEL=debug
+            - CONTAINERS=1
+            - INFO=1
         networks:
             - monitoring-test
 
@@ -101,7 +121,6 @@ networks:
             name: monitoring-test
 
 volumes:
-    mongo:
-        driver: local
+    mongo: { }
     grafana_data: { }
     influxdb_data: { }

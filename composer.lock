@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fe33f98a750b8c5a51b30c78bd3fab21",
+    "content-hash": "c232041244b688e2dd31edf9e5a7bfd5",
     "packages": [
         {
             "name": "brick/math",
@@ -432,6 +432,179 @@
                 }
             ],
             "time": "2023-01-14T14:17:03+00:00"
+        },
+        {
+            "name": "elasticsearch/elasticsearch",
+            "version": "v7.17.1",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:elastic/elasticsearch-php.git",
+                "reference": "f1b8918f411b837ce5f6325e829a73518fd50367"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/f1b8918f411b837ce5f6325e829a73518fd50367",
+                "reference": "f1b8918f411b837ce5f6325e829a73518fd50367",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": ">=1.3.7",
+                "ezimuel/ringphp": "^1.1.2",
+                "php": "^7.3 || ^8.0",
+                "psr/log": "^1|^2|^3"
+            },
+            "require-dev": {
+                "ext-yaml": "*",
+                "ext-zip": "*",
+                "mockery/mockery": "^1.2",
+                "phpstan/phpstan": "^0.12",
+                "phpunit/phpunit": "^9.3",
+                "squizlabs/php_codesniffer": "^3.4",
+                "symfony/finder": "~4.0"
+            },
+            "suggest": {
+                "ext-curl": "*",
+                "monolog/monolog": "Allows for client-level logging and tracing"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/autoload.php"
+                ],
+                "psr-4": {
+                    "Elasticsearch\\": "src/Elasticsearch/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0",
+                "LGPL-2.1-only"
+            ],
+            "authors": [
+                {
+                    "name": "Zachary Tong"
+                },
+                {
+                    "name": "Enrico Zimuel"
+                }
+            ],
+            "description": "PHP Client for Elasticsearch",
+            "keywords": [
+                "client",
+                "elasticsearch",
+                "search"
+            ],
+            "time": "2022-09-30T12:28:55+00:00"
+        },
+        {
+            "name": "ezimuel/guzzlestreams",
+            "version": "3.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ezimuel/guzzlestreams.git",
+                "reference": "b4b5a025dfee70d6cd34c780e07330eb93d5b997"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ezimuel/guzzlestreams/zipball/b4b5a025dfee70d6cd34c780e07330eb93d5b997",
+                "reference": "b4b5a025dfee70d6cd34c780e07330eb93d5b997",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~9.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GuzzleHttp\\Stream\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                }
+            ],
+            "description": "Fork of guzzle/streams (abandoned) to be used with elasticsearch-php",
+            "homepage": "http://guzzlephp.org/",
+            "keywords": [
+                "Guzzle",
+                "stream"
+            ],
+            "support": {
+                "source": "https://github.com/ezimuel/guzzlestreams/tree/3.1.0"
+            },
+            "time": "2022-10-24T12:58:50+00:00"
+        },
+        {
+            "name": "ezimuel/ringphp",
+            "version": "1.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ezimuel/ringphp.git",
+                "reference": "7887fc8488013065f72f977dcb281994f5fde9f4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ezimuel/ringphp/zipball/7887fc8488013065f72f977dcb281994f5fde9f4",
+                "reference": "7887fc8488013065f72f977dcb281994f5fde9f4",
+                "shasum": ""
+            },
+            "require": {
+                "ezimuel/guzzlestreams": "^3.0.1",
+                "php": ">=5.4.0",
+                "react/promise": "~2.0"
+            },
+            "replace": {
+                "guzzlehttp/ringphp": "self.version"
+            },
+            "require-dev": {
+                "ext-curl": "*",
+                "phpunit/phpunit": "~9.0"
+            },
+            "suggest": {
+                "ext-curl": "Guzzle will use specific adapters if cURL is present"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GuzzleHttp\\Ring\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                }
+            ],
+            "description": "Fork of guzzle/RingPHP (abandoned) to be used with elasticsearch-php",
+            "support": {
+                "source": "https://github.com/ezimuel/ringphp/tree/1.2.2"
+            },
+            "time": "2022-12-07T11:28:53+00:00"
         },
         {
             "name": "fruitcake/php-cors",
@@ -980,6 +1153,147 @@
                 }
             ],
             "time": "2021-10-07T12:57:01+00:00"
+        },
+        {
+            "name": "jean85/pretty-package-versions",
+            "version": "2.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Jean85/pretty-package-versions.git",
+                "reference": "ae547e455a3d8babd07b96966b17d7fd21d9c6af"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Jean85/pretty-package-versions/zipball/ae547e455a3d8babd07b96966b17d7fd21d9c6af",
+                "reference": "ae547e455a3d8babd07b96966b17d7fd21d9c6af",
+                "shasum": ""
+            },
+            "require": {
+                "composer-runtime-api": "^2.0.0",
+                "php": "^7.1|^8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.17",
+                "jean85/composer-provided-replaced-stub-package": "^1.0",
+                "phpstan/phpstan": "^0.12.66",
+                "phpunit/phpunit": "^7.5|^8.5|^9.4",
+                "vimeo/psalm": "^4.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Jean85\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alessandro Lai",
+                    "email": "alessandro.lai85@gmail.com"
+                }
+            ],
+            "description": "A library to get pretty versions strings of installed dependencies",
+            "keywords": [
+                "composer",
+                "package",
+                "release",
+                "versions"
+            ],
+            "support": {
+                "issues": "https://github.com/Jean85/pretty-package-versions/issues",
+                "source": "https://github.com/Jean85/pretty-package-versions/tree/2.0.5"
+            },
+            "time": "2021-10-08T21:21:46+00:00"
+        },
+        {
+            "name": "jenssegers/mongodb",
+            "version": "v3.9.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jenssegers/laravel-mongodb.git",
+                "reference": "6ce35ace85a5946f943d7f493f93aebb9a6d129d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jenssegers/laravel-mongodb/zipball/6ce35ace85a5946f943d7f493f93aebb9a6d129d",
+                "reference": "6ce35ace85a5946f943d7f493f93aebb9a6d129d",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/container": "^9.0",
+                "illuminate/database": "^9.0",
+                "illuminate/events": "^9.0",
+                "illuminate/support": "^9.0",
+                "mongodb/mongodb": "^1.11"
+            },
+            "require-dev": {
+                "doctrine/dbal": "^2.13.3|^3.1.4",
+                "mockery/mockery": "^1.3.1",
+                "orchestra/testbench": "^7.0",
+                "phpunit/phpunit": "^9.5.8"
+            },
+            "suggest": {
+                "jenssegers/mongodb-sentry": "Add Sentry support to Laravel-MongoDB",
+                "jenssegers/mongodb-session": "Add MongoDB session support to Laravel-MongoDB"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Jenssegers\\Mongodb\\MongodbServiceProvider",
+                        "Jenssegers\\Mongodb\\MongodbQueueServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Jenssegers\\Mongodb\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jens Segers",
+                    "homepage": "https://jenssegers.com"
+                }
+            ],
+            "description": "A MongoDB based Eloquent model and Query builder for Laravel (Moloquent)",
+            "homepage": "https://github.com/jenssegers/laravel-mongodb",
+            "keywords": [
+                "database",
+                "eloquent",
+                "laravel",
+                "model",
+                "moloquent",
+                "mongo",
+                "mongodb"
+            ],
+            "support": {
+                "issues": "https://github.com/jenssegers/laravel-mongodb/issues",
+                "source": "https://github.com/jenssegers/laravel-mongodb/tree/v3.9.5"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/jenssegers",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/jenssegers/mongodb",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2023-02-16T12:20:36+00:00"
         },
         {
             "name": "laravel/framework",
@@ -1706,6 +2020,76 @@
                 }
             ],
             "time": "2022-04-17T13:12:02+00:00"
+        },
+        {
+            "name": "mongodb/mongodb",
+            "version": "1.15.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mongodb/mongo-php-library.git",
+                "reference": "3a681a3b2f2c0ebac227a3b86bb9057d0e6eb8f8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mongodb/mongo-php-library/zipball/3a681a3b2f2c0ebac227a3b86bb9057d0e6eb8f8",
+                "reference": "3a681a3b2f2c0ebac227a3b86bb9057d0e6eb8f8",
+                "shasum": ""
+            },
+            "require": {
+                "ext-hash": "*",
+                "ext-json": "*",
+                "ext-mongodb": "^1.15.0",
+                "jean85/pretty-package-versions": "^1.2 || ^2.0.1",
+                "php": "^7.2 || ^8.0",
+                "symfony/polyfill-php80": "^1.19"
+            },
+            "require-dev": {
+                "doctrine/coding-standard": "^9.0",
+                "squizlabs/php_codesniffer": "^3.6",
+                "symfony/phpunit-bridge": "^5.2",
+                "vimeo/psalm": "^4.28"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.15.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/functions.php"
+                ],
+                "psr-4": {
+                    "MongoDB\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Andreas Braun",
+                    "email": "andreas.braun@mongodb.com"
+                },
+                {
+                    "name": "Jeremy Mikola",
+                    "email": "jmikola@gmail.com"
+                }
+            ],
+            "description": "MongoDB driver library",
+            "homepage": "https://jira.mongodb.org/browse/PHPLIB",
+            "keywords": [
+                "database",
+                "driver",
+                "mongodb",
+                "persistence"
+            ],
+            "support": {
+                "issues": "https://github.com/mongodb/mongo-php-library/issues",
+                "source": "https://github.com/mongodb/mongo-php-library/tree/1.15.0"
+            },
+            "time": "2022-11-23T04:45:35+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -2941,6 +3325,82 @@
                 }
             ],
             "time": "2023-01-12T18:13:24+00:00"
+        },
+        {
+            "name": "react/promise",
+            "version": "v2.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/reactphp/promise.git",
+                "reference": "234f8fd1023c9158e2314fa9d7d0e6a83db42910"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/reactphp/promise/zipball/234f8fd1023c9158e2314fa9d7d0e6a83db42910",
+                "reference": "234f8fd1023c9158e2314fa9d7d0e6a83db42910",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.3 || ^5.7 || ^4.8.36"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/functions_include.php"
+                ],
+                "psr-4": {
+                    "React\\Promise\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jan Sorgalla",
+                    "email": "jsorgalla@gmail.com",
+                    "homepage": "https://sorgalla.com/"
+                },
+                {
+                    "name": "Christian Lück",
+                    "email": "christian@clue.engineering",
+                    "homepage": "https://clue.engineering/"
+                },
+                {
+                    "name": "Cees-Jan Kiewiet",
+                    "email": "reactphp@ceesjankiewiet.nl",
+                    "homepage": "https://wyrihaximus.net/"
+                },
+                {
+                    "name": "Chris Boden",
+                    "email": "cboden@gmail.com",
+                    "homepage": "https://cboden.dev/"
+                }
+            ],
+            "description": "A lightweight implementation of CommonJS Promises/A for PHP",
+            "keywords": [
+                "promise",
+                "promises"
+            ],
+            "support": {
+                "issues": "https://github.com/reactphp/promise/issues",
+                "source": "https://github.com/reactphp/promise/tree/v2.9.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/WyriHaximus",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/clue",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-02-11T10:27:51+00:00"
         },
         {
             "name": "symfony/console",
