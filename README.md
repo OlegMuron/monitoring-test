@@ -5,7 +5,7 @@
 1. Clone repository to the common place:
 
 ```bash
-git clone 
+git clone git@github.com:OlegMuron/monitoring-test.git 
 ```
 
 2. Build application image
@@ -57,4 +57,11 @@ make load-test
 
 Simple load:
 
-![AB output](/resources/screensoots/ab-output.png?raw=true "AB output")
+![AB output](/resources/screensoots/ab-output.png?raw=true "AB output") ![php-nginx](/resources/screensoots/nginx-php-without-requests.png?raw=true "php-nginx") 
+
+Load test with querying to MongoDB and Elastic:
+
+![AB output](/resources/screensoots/ab-output-with-load.png?raw=true "AB output") ![php-nginx](/resources/screensoots/php-nginx-load.png?raw=true "php-nginx")
+![Docker stats](/resources/screensoots/docker-load.png?raw=true "Docker stats") ![Elastic](/resources/screensoots/elastic-load.png?raw=true "Elastic")
+![MongoDB](/resources/screensoots/mongo-load.png?raw=true "MongoDB")
+
