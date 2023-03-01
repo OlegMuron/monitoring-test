@@ -98,6 +98,14 @@ load-stub: ## Make 1000 req per 5 thread to the stub page
 load-test: ## Make 1000 req per 5 thread to the test page with queries to MongoDB and Elastic
 	 ab -n 1000 -c 5 http://127.0.0.1:81/test
 
+.PHONY: build-siege
+build-siege: ## Build the Siege image
+	docker build ./docker/siege -t monitoring-test/siege:$(IMAGE_TAG)
+
+.PHONY: siege
+siege: ## Siege it!!! ('make siege --help' for getting help or 'make siege -r20 -c1000 --no-follow http://app/test' for siege this application)
+	docker-compose run -t siege -R /siege/.siegerc ${ARGS}
+
 .PHONY: help
 help: .title ## Show this help and exit (default target)
 	echo ''
