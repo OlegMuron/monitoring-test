@@ -1,0 +1,40 @@
+version:                        4.1.5
+verbose:                        true
+color:                          true
+quiet:                          false
+debug:                          false
+protocol:                       HTTP/1.1
+HTML parser:                    enabled
+get method:                     HEAD
+connection:                     close
+concurrent users:               25
+time to run:                    n/a
+repetitions:                    n/a
+socket timeout:                 30
+cache enabled:                  false
+accept-encoding:                gzip, deflate
+delay:                          0.000 sec
+internet simulation:            false
+benchmark mode:                 false
+failures until abort:           1024
+named URL:                      none
+URLs file:                      /usr/local/etc/urls.txt
+thread limit:                   10000
+limit:                          10000
+logging:                        false
+log file:                       /usr/local/var/log/siege.log
+resource file:                  /root/.siege/siege.conf
+timestamped output:             false
+comma separated output:         false
+allow redirects:                true
+allow zero byte data:           true
+allow chunked encoding:         true
+upload unique files:            true
+json output:                    false
+no-follow:
+ - ad.doubleclick.net
+ - pagead2.googlesyndication.com
+ - ads.pubsqrd.com
+ - ib.adnxs.com
+proxy auth:
+www auth:
