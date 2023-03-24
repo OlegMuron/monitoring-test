@@ -11,6 +11,7 @@ services:
         env_file: docker-compose.env
         volumes:
             - '.:/app'
+#            - ./docker/config/php/fpm-pool.conf:/etc/php81/php-fpm.d/www.conf:ro // use it for the custom php-fpm settings
         networks:
             - monitoring-test
 
@@ -112,6 +113,16 @@ services:
             - LOG_LEVEL=debug
             - CONTAINERS=1
             - INFO=1
+        networks:
+            - monitoring-test
+
+    siege:
+        build: ./docker/siege/
+        image: monitoring-test/siege:latest
+        volumes:
+            - ./docker/siege/.siegerc:/siege/.siegerc
+        extra_hosts:
+            - 'host.docker.internal:host-gateway'
         networks:
             - monitoring-test
 
